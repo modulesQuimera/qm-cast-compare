@@ -1,0 +1,25 @@
+{
+  "name": "cast_compare",
+  "version": "1.0.0",
+  "description": "Cast Compare module - Node-Red",
+  "main": "cast_compare.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+    "repository": {
+    "type": "git",
+    "url": "git+https://github.com/modulesQuimera/qm-hub-cast-compare.git"
+  },
+  "keywords": ["quimera", "hub", "JIG"],
+  "author": "HUB-LSE",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/modulesQuimera/qm-hub-cast-compare/issues"
+  },
+  "homepage": "https://github.com/modulesQuimera/qm-hub-cast-compare#readme",
+  "node-red" : {
+    "nodes": {
+        "cast_compare": "cast_compare.js"
+    }
+  }
+}

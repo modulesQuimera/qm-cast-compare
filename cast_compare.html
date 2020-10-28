@@ -1,0 +1,102 @@
+<script type="text/javascript">
+	RED.nodes.registerType('cast_compare',{
+		category: 'Processing Module',
+		color: '#ff0028',
+		defaults: {
+            variable: { value: "", required:true },
+			compare_select: {value:"interval", required:true},
+			maxValue: {value: null},
+			minValue: {value: null},
+			name:{value:""}
+		},
+		inputs:1,
+		outputs:1,
+		icon: "CPU.svg",
+		label: function() {
+			return this.name? "Cast Compare - " + this.name: "Cast Compare";
+		},
+		oneditprepare: function() { 
+			var node = this;
+			var scope = node.scope || [];
+
+			$("#node-input-compare_select").on("change", function(e) {
+				var compare = $(this).val();
+				if (compare === "interval"){ $(".node-input-max-value").show(); $(".node-input-min-value").show(); }
+				if (compare === "maxValue"){ $(".node-input-max-value").show(); $(".node-input-min-value").hide(); }
+				if (compare === "minValue"){ $(".node-input-max-value").hide(); $(".node-input-min-value").show(); }
+			});
+
+		}
+	});	
+</script>
+
+<style>
+	label{ width: 100% !important; margin-bottom: 2px !important; }
+	.columm{ display: flex !important; flex-direction: column !important; }
+	hr { width: 40% !important; float: left !important; }
+	.hr-div-compare{ display: flex !important; justify-content: space-between !important; }
+	.optional{ height: max-content !important; margin-top: 10px !important; }
+	.descript{ text-align: center; }
+	.columm-50{ display: flex !important; flex-direction: column !important; width: 50% !important; float: left !important; }
+    .columm-30{ display: flex !important; flex-direction: column !important; width: 30% !important; float: left !important; }
+    .columm-70{ display: flex !important; flex-direction: column !important; width: 70% !important; float: left !important; }
+    hr { width: 40% !important; float: left !important; }
+    .hr-div-get{ display: flex !important; justify-content: space-between !important; margin-top: 250px !important; }
+    .optional{ height: max-content !important; margin-top: 10px !important; }
+    .descript{ text-align: center; }
+    .descript-div{ max-width: 444px !important; }
+    span.red-ui-typedInput-type-label { width: 250px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+    .btn-aln{ display: flex !important; flex-direction: row-reverse !important; align-content: center; align-items: flex-end; }
+</style>
+
+<script type="text/html" data-template-name="cast_compare">
+	<div class="form-row columm descript-div">
+		<strong class="descript">
+			Makes the rest of the comparisons adjacent to the “get command message”.
+		</strong>
+	</div>
+
+	<div style=" position: relative; display:flex;">
+        <div class="form-row columm-70">
+            <label style="width: 50% !important;" for="node-input-name" ><i class="fa fa-tag"></i> Identification Note</label>
+            <input type="text" id="node-input-name" placeholder="Name" style="width: 100%">
+        </div>
+	</div>
+	<div class="hr-div-compare">
+		<hr>Message<hr>
+    </div>
+    <div class='form-row columm-70'>
+        <label for='node-input-variable'><i class='fa fa-envelope'></i> Variable</label>
+        <input type='text' id='node-input-variable' placeholder='Variable' maxlength = '40' style='width:100%;'>
+    </div>
+	<div class="form-row "  style=" position: relative; display:flex;">
+        <div class="form-row columm"  style="width: max-content;">
+            <label style=" margin-top: 8px;" for="node-input-compare_select"><i class="icon-tag"></i>Comparison Type:</label>
+            <select id="node-input-compare_select"   style="width: 160px;">
+                <option value="interval">Interval</option>
+                <option value="maxValue">Maximum value (<)</option>
+                <option value="minValue">Minimum value (>)</option>  
+            </select>
+        </div>
+        <div class="form-row columm-70" style="display: flex; padding-left: 10px;">
+            <div class=box>
+                <div class="node-input-min-value" style="display: none;  float: left; margin-right: 40px;">
+                    <div class="columm">
+                        <label for="node-input-minValue" style="margin-top: 8px; width: max-content !important;"><i class="icon-tag"></i>Minimum Value: </label>
+                        <input type="number" id="node-input-minValue" style=" width:100px !important ">
+                    </div>
+                </div>
+                <div class="node-input-max-value" style="display: none;">
+                    <div class="columm">
+                        <label for="node-input-maxValue" style="margin-top: 8px; width: max-content !important"><i class="icon-tag"></i>Maximum Value: </label>
+                        <input type="number" id="node-input-maxValue" style=" width:100px !important ">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/html" data-help-name="cast_compare">
+  	<p>Makes the rest of the comparisons adjacent to the “get command message”.</p>
+</script>
