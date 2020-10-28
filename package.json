@@ -1,5 +1,5 @@
 {
-  "name": "cast_compare",
+  "name": "qm-cast-compare",
   "version": "1.0.0",
   "description": "Cast Compare module - Node-Red",
   "main": "cast_compare.js",
