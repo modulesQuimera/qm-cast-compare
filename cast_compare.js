@@ -6,6 +6,8 @@ module.exports = function(RED) {
 		this.variable = config.variable;
 		this.maxValue = config.maxValue;
 		this.minValue = config.minValue;
+		this.format = config.format;
+		this.number = config.number;
 		var node = this;
 		
 		node.on('input', function(msg) {
@@ -23,6 +25,8 @@ module.exports = function(RED) {
 				type: "processing_modular_V1_0",
 				slot: 1,
 				method: "cast_compare",
+				format: node.format,
+				number: (parseInt(node.number)-1),
 				compare: _compare,
 				var: node.variable,
 				get_output: {}

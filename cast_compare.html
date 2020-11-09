@@ -4,7 +4,9 @@
 		color: '#ff0028',
 		defaults: {
             variable: { value: "", required:true },
-			compare_select: {value:"interval", required:true},
+            compare_select: {value:"interval", required:true},
+            format: {value: ""},
+            number: {value: "1"},
 			maxValue: {value: null},
 			minValue: {value: null},
 			name:{value:""}
@@ -24,7 +26,16 @@
 				if (compare === "interval"){ $(".node-input-max-value").show(); $(".node-input-min-value").show(); }
 				if (compare === "maxValue"){ $(".node-input-max-value").show(); $(".node-input-min-value").hide(); }
 				if (compare === "minValue"){ $(".node-input-max-value").hide(); $(".node-input-min-value").show(); }
-			});
+            });
+            
+            $("#format_data").on("change", function(e) {
+                if ($(this).is(':checked')) {
+                    $("#format").show();
+                }else {
+                    $("#format").hide();
+                }
+
+            });
 
 		}
 	});	
@@ -47,6 +58,8 @@
     .descript-div{ max-width: 444px !important; }
     span.red-ui-typedInput-type-label { width: 250px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
     .btn-aln{ display: flex !important; flex-direction: row-reverse !important; align-content: center; align-items: flex-end; }
+    .box { position: relative; float: left; width: 100%; display: flex; align-items: center;
+}
 </style>
 
 <script type="text/html" data-template-name="cast_compare">
@@ -69,6 +82,21 @@
         <label for='node-input-variable'><i class='fa fa-envelope'></i> Variable</label>
         <input type='text' id='node-input-variable' placeholder='Variable' maxlength = '40' style='width:100%;'>
     </div>
+    <div class='form-row' style='margin-bottom: 4px;'>
+        <input type='checkbox' id='format_data' style='width: 3%;margin: 0;' autocomplete='off'>
+        <label for='format_data' style='width: 22% !important; padding-left: 5px;user-select: none;'>Format:</label>
+    </div>
+    <div id="format" class='box' style="display:none; !important">
+        <div class='columm' style="margin-right: 11px;">
+            <label for='node-input-format'>Format data: </label>
+            <input type='text' id='node-input-format' placeholder='Format' maxlength = '40' style='width:100%;'>
+        </div>
+        <div class="columm">
+            <label for="node-input-number" style="width: max-content !important"><i class="icon-tag"></i>Number: </label>
+            <input type="number" id="node-input-number" min="1" style=" width:100px !important ">
+        </div>
+    </div>
+
 	<div class="form-row "  style=" position: relative; display:flex;">
         <div class="form-row columm"  style="width: max-content;">
             <label style=" margin-top: 8px;" for="node-input-compare_select"><i class="icon-tag"></i>Comparison Type:</label>
