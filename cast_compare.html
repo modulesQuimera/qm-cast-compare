@@ -5,6 +5,7 @@
 		defaults: {
             variable: { value: "", required:true },
             compare_select: {value:"interval", required:true},
+            format_data: {value: false},
             format: {value: ""},
             number: {value: "1"},
 			maxValue: {value: null},
@@ -28,13 +29,12 @@
 				if (compare === "minValue"){ $(".node-input-max-value").hide(); $(".node-input-min-value").show(); }
             });
             
-            $("#format_data").on("change", function(e) {
+            $("#node-input-format_data").on("change", function(e) {
                 if ($(this).is(':checked')) {
                     $("#format").show();
                 }else {
                     $("#format").hide();
                 }
-
             });
 
 		}
@@ -83,10 +83,10 @@
         <input type='text' id='node-input-variable' placeholder='Variable' maxlength = '40' style='width:100%;'>
     </div>
     <div class='form-row' style='margin-bottom: 4px;'>
-        <input type='checkbox' id='format_data' style='width: 3%;margin: 0;' autocomplete='off'>
-        <label for='format_data' style='width: 22% !important; padding-left: 5px;user-select: none;'>Format:</label>
+        <input type='checkbox' id='node-input-format_data' style='width: 3%;margin: 0;' autocomplete='off'>
+        <label for='node-input-format_data' style='width: 22% !important; padding-left: 5px;user-select: none;'>Format:</label>
     </div>
-    <div id="format" class='box' style="display:none; !important">
+    <div id="format" class='box'>
         <div class='columm' style="margin-right: 11px;">
             <label for='node-input-format'>Format data: </label>
             <input type='text' id='node-input-format' placeholder='Format' maxlength = '40' style='width:100%;'>
